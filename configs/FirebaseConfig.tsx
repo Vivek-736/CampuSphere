@@ -1,17 +1,20 @@
+// @ts-ignore
+import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth'
-import { getStorage } from 'firebase/storage'
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MESURMENT_ID
+    apiKey: 'AIzaSyDl0ZlhVuc_pYndARggD_n8AR8d0TQ2z58',
+    authDomain: 'vidgenius-4ad7e.firebaseapp.com',
+    projectId: 'vidgenius-4ad7e',
+    storageBucket: 'vidgenius-4ad7e.firebasestorage.app',
+    messagingSenderId: '57678161119',
+    appId: '1:57678161119:web:f785a069aec6a16582f56a',
+    measurementId: 'G-K01SYB2MQP'
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const storage = getStorage(app)
+
+export const auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+});

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ToastAndroid } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import TextInputField from '@/components/TextInputField';
 import Button from '@/components/Button';
 import * as ImagePicker from 'expo-image-picker';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/configs/FirebaseConfig';
 
 const SignUp = () => {
     const [profileImage, setProfileImage] = useState<string | undefined>();
@@ -12,7 +14,21 @@ const SignUp = () => {
     const [password, setPassword] = useState<string | undefined>();
 
     const onBtnPress = () => {
+        if(!email || !password || !fullName) {
+            ToastAndroid.show('Please enter all details!', ToastAndroid.BOTTOM);
+            return;
+        }
 
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(async(userCredentials) => {
+                console.log(userCredentials);
+                // Upload Profile Image
+
+                //Save to Database
+                
+            }).catch((error) => {
+                ToastAndroid.show(error.message, ToastAndroid.BOTTOM);
+            });
     }
 
     const pickImage = async () => {
