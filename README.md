@@ -16,13 +16,10 @@ With smooth navigation, secure authentication, and live updates, it keeps the **
 
 ## 🛠 Tech Stack
 
-- **Framework:** [React Native](https://reactnative.dev/) + [Expo](https://expo.dev/)  
-- **State Management:** Redux Toolkit / Zustand (if applicable)  
-- **Navigation:** [React Navigation](https://reactnavigation.org/)  
-- **Backend & Realtime:** Firebase / Supabase  
-- **Authentication:** Firebase Auth / Supabase Auth  
-- **Styling:** Tailwind RN / Styled Components  
-- **Deployment:** Expo EAS  
+- **Framework:** [React Native](https://reactnative.dev/) + [Expo](https://expo.dev/)
+- **Backend:** Nile Database for the backend
+- **Navigation:** [React Navigation](https://reactnavigation.org/)
+- **Styling:** Tailwind RN / Styled Components
 
 ---
 
