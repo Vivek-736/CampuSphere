@@ -1,11 +1,14 @@
 import Button from '@/components/Button'
 import Colors from '@/data/Colors'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { View, Image, Text, StyleSheet, SafeAreaView, Dimensions } from 'react-native'
 
 const { height } = Dimensions.get('window')
 
 const LandingScreen = () => {
+    const router = useRouter();
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
@@ -26,20 +29,19 @@ const LandingScreen = () => {
 
                     <View style={styles.buttonContainer}>
                         <Button 
-                            text='Get Started' 
-                            onPress={() => console.log("Button Pressed")}
+                            text='Get Started'
+                            // @ts-ignore
+                            onPress={() => router.push('/(auth)/SignUp')}
                             style={styles.getStartedButton}
                         />
-                        
                         <Text style={styles.signInText}>
                             Already have an account?{' '}
-                            <Text style={styles.signInLink}>Sign In Here</Text>
+                            <Text onPress={() => router.push('/(auth)/SignIn')} style={styles.signInLink}>Sign In Here</Text>
                         </Text>
                     </View>
                 </View>
             </View>
             
-            {/* Space reserved for navigation buttons */}
             <View style={styles.navigationSpace} />
         </SafeAreaView>
     )
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         paddingHorizontal: 24,
-        paddingTop: 32,
+        paddingTop: 20,
         justifyContent: 'space-between',
         paddingBottom: 20,
     },
