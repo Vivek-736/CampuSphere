@@ -20,6 +20,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, storage } from "@/configs/FirebaseConfig";
 import axios from "axios";
 import Constants from "expo-constants";
+import { useRouter } from "expo-router";
 
 const SignUp = () => {
   const [profileImage, setProfileImage] = useState<string | undefined>();
@@ -28,6 +29,7 @@ const SignUp = () => {
   const [password, setPassword] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isUploadingImage, setIsUploadingImage] = useState<boolean>(false);
+  const router = useRouter();
 
   const uploadImageToFirebase = async (
     imageUri: string,
@@ -162,6 +164,7 @@ const SignUp = () => {
         await saveUserToDatabase(fullName, email, profileImageUrl || "");
         ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
         console.log("User data saved to NileDB successfully");
+        router.push('/(tabs)/Home');
 
       } catch (dbError) {
         console.error("Error saving to NileDB:", dbError);

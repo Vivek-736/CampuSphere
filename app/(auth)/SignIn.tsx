@@ -91,6 +91,7 @@ const SignIn = () => {
 
       ToastAndroid.show("Sign in successful!", ToastAndroid.SHORT);
 
+      router.push('/(tabs)/Home');
     } catch (error: any) {
       console.error("Sign in error:", error);
       
