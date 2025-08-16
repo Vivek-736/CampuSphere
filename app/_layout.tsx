@@ -42,6 +42,16 @@ export default function RootLayout() {
             animation: "slide_from_bottom",
           }}
         />
+        <Stack.Screen
+          name="(auth)/SignIn"
+          options={{
+            headerShown: false,
+            statusBarStyle: "dark",
+            presentation: "modal",
+            gestureEnabled: true,
+            animation: "slide_from_bottom",
+          }}
+        />
       </Stack>
     </View>
   );
