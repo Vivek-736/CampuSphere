@@ -63,7 +63,31 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="(tabs)"
+            name="(tabs)/Home"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)/Event"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)/Clubs"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)/Profile"
             options={{
               headerShown: false,
               statusBarStyle: "dark",
