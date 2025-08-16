@@ -7,12 +7,12 @@ export default function RootLayout() {
   return (
     <UserProvider>
       <View style={{ flex: 1 }}>
-        <StatusBar 
-          style="dark" 
+        <StatusBar
+          style="dark"
           backgroundColor="rgba(255,255,255,0.9)"
           translucent={true}
         />
-        
+
         <Stack
           screenOptions={{
             headerShown: false,
@@ -22,9 +22,17 @@ export default function RootLayout() {
             presentation: "card",
             contentStyle: {
               backgroundColor: "white",
-            }
+            },
           }}
         >
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="landing"
             options={{
@@ -52,6 +60,14 @@ export default function RootLayout() {
               presentation: "modal",
               gestureEnabled: true,
               animation: "slide_from_bottom",
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
             }}
           />
         </Stack>
