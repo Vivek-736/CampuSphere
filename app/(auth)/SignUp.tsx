@@ -17,6 +17,7 @@ import Button from "@/components/Button";
 import * as ImagePicker from "expo-image-picker";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+// @ts-ignore
 import { auth, storage } from "@/configs/FirebaseConfig";
 import axios from "axios";
 import Constants from "expo-constants";
@@ -130,6 +131,7 @@ const SignUp = () => {
 
     try {
       const userCredentials = await createUserWithEmailAndPassword(
+        // @ts-ignore
         auth,
         email,
         password

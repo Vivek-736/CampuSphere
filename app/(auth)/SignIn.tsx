@@ -11,6 +11,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import TextInputField from "@/components/TextInputField";
 import Button from "@/components/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
+// @ts-ignore
 import { auth } from "@/configs/FirebaseConfig";
 import axios from "axios";
 import Constants from "expo-constants";
@@ -86,6 +87,7 @@ const SignIn = () => {
       const dbUser = await checkUserInDatabase(email);
       console.log("Database user:", dbUser);
 
+      // @ts-ignore
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
       console.log("Firebase authentication successful:", userCredentials.user.uid);
 
