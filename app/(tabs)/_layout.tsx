@@ -3,12 +3,18 @@ import { Tabs } from 'expo-router'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { useUser } from '@/context/UserContext'
 import { Image } from 'react-native'
+import Colors from '@/data/Colors'
 
 export default function TabLayout() {
     const { userData } = useUser()
 
     return (
-        <Tabs>
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: Colors.PRIMARY,
+                headerShown: false
+            }}
+        >
             <Tabs.Screen name="Home"
                 options={{
                     tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />
