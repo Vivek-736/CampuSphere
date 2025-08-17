@@ -94,6 +94,15 @@ export default function RootLayout() {
               gestureEnabled: false,
             }}
           />
+          <Stack.Screen
+            name="(add-post)/"
+            options={{
+              headerShown: false,
+              statusBarStyle: "dark",
+              gestureEnabled: false,
+              animation: "slide_from_bottom"
+            }}
+          />
         </Stack>
       </View>
     </UserProvider>

@@ -30,7 +30,7 @@ const categoryOptions = [
     {
         name: 'Add New Post',
         banner: require('./../../assets/images/add.png'),
-        path: '/add-post',
+        path: '/(add-post)/',
         gradientStart: '#f96885ff',
         gradientEnd: '#d20830ff',
     }
