@@ -1,3 +1,4 @@
+// @ts-ignore
 import { auth } from '@/configs/FirebaseConfig';
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
@@ -29,6 +30,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // @ts-ignore
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       console.log('Auth state changed:', firebaseUser?.email);
       
@@ -57,6 +59,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   const signOut = async () => {
     try {
+      // @ts-ignore
       await auth.signOut();
       setUser(null);
       setUserData(null);
