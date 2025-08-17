@@ -13,6 +13,7 @@ export default function Header() {
                     Hey there, <Text style={styles.username}>{userData?.name || 'User'}</Text>
                 </Text>
             </View>
+            
             {userData?.image ? (
                 <Image 
                     source={{ uri: userData.image }} 
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
     greeting: {
         fontSize: 22,
         color: '#333',
+        paddingLeft: 12
     },
     username: {
         fontWeight: 'bold',
