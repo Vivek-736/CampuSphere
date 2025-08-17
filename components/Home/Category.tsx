@@ -10,8 +10,8 @@ const categoryOptions = [
         name: 'Events',
         banner: require('./../../assets/images/news.png'),
         path: '/(tabs)/Event',
-        gradientStart: '#FF6B6B',
-        gradientEnd: '#FF8E72',
+        gradientStart: '#956bffff',
+        gradientEnd: '#5c20f5ff',
     },
     {
         name: 'Latest Posts',
@@ -24,15 +24,15 @@ const categoryOptions = [
         name: 'Clubs',
         banner: require('./../../assets/images/clubs.png'),
         path: '/(tabs)/Clubs',
-        gradientStart: '#C7F464',
-        gradientEnd: '#81C784',
+        gradientStart: '#f4ea64ff',
+        gradientEnd: '#aea312ff',
     },
     {
         name: 'Add New Post',
         banner: require('./../../assets/images/add.png'),
         path: '/add-post',
-        gradientStart: '#6A82FB',
-        gradientEnd: '#FC5C7D',
+        gradientStart: '#f96885ff',
+        gradientEnd: '#d20830ff',
     }
 ];
 
