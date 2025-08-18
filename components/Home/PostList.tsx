@@ -22,15 +22,18 @@ export default function PostList({
 
   const timeAgo = (iso: string) => {
     const now = Date.now();
-    const ms  = now - new Date(iso).getTime();
-    const m   = Math.floor(ms / 60000);
-    if (m < 1)        return 'Just now';
-    if (m < 60)       return `${m}m ago`;
+    const ms = now - new Date(iso).getTime();
+    const m = Math.floor(ms / 60000);
+    if (m < 1) return 'Just now';
+    if (m < 60) return `${m}m ago`;
     const h = Math.floor(m / 60);
-    if (h < 24)       return `${h}h ago`;
+    if (h < 24) return `${h}h ago`;
     const d = Math.floor(h / 24);
-    if (d < 7)        return `${d}d ago`;
-    return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    if (d < 7) return `${d}d ago`;
+    return new Date(iso).toLocaleDateString(undefined, { 
+      month: 'short', 
+      day: 'numeric' 
+    });
   };
 
   if (loading)
@@ -47,21 +50,29 @@ export default function PostList({
       </View>
     );
 
-  return (
-    <View style={{ marginTop: 24 }}>
-      {posts.map(p => {
-        if (p.visiblein !== 'public') return null;
+  const publicPosts = posts.filter(p => p.visiblein === 'public');
 
-        const isMe   = userData?.email === p.createdby;
+  return (
+    <View style={styles.container}>
+      {publicPosts.map((p, index) => {
+        const isMe = userData?.email === p.createdby;
         const avatar = isMe && userData?.image
           ? { uri: userData.image }
           : require('@/assets/images/user.png');
 
+        const isLastPost = index === publicPosts.length - 1;
+
         return (
-          <View key={p.id} style={styles.card}>
-            <View style={styles.row}>
+          <View 
+            key={p.id} 
+            style={[
+              styles.card,
+              isLastPost && styles.lastCard
+            ]}
+          >
+            <View style={styles.header}>
               <Image source={avatar} style={styles.avatar} />
-              <View style={{ flex: 1 }}>
+              <View style={styles.userInfo}>
                 <Text style={styles.name} numberOfLines={1}>
                   {isMe ? userData?.name : p.createdby.split('@')[0]}
                 </Text>
@@ -72,11 +83,13 @@ export default function PostList({
             <Text style={styles.content}>{p.content}</Text>
 
             {p.imageurl && (
-              <Image
-                source={{ uri: p.imageurl }}
-                style={styles.media}
-                resizeMode="cover"
-              />
+              <View style={styles.mediaContainer}>
+                <Image
+                  source={{ uri: p.imageurl }}
+                  style={styles.media}
+                  resizeMode="cover"
+                />
+              </View>
             )}
           </View>
         );
@@ -86,26 +99,90 @@ export default function PostList({
 }
 
 const styles = StyleSheet.create({
-  center: { alignItems: 'center', marginTop: 40 },
-  muted:  { fontSize: 16, color: '#7f8c8d' },
+  container: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  
+  center: { 
+    alignItems: 'center', 
+    marginTop: 40,
+    paddingHorizontal: 16,
+  },
+  
+  muted: { 
+    fontSize: 16, 
+    color: '#7f8c8d',
+    textAlign: 'center',
+  },
 
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: 16,
-    padding: 16,
+    padding: 20,
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 5,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#f0f2f5',
   },
-  row:   { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
-  avatar:{ width: 40, height: 40, borderRadius: 20, marginRight: 12, backgroundColor: '#e1e8ed' },
-  name:  { fontSize: 16, fontWeight: '600', color: '#2c3e50' },
-  time:  { fontSize: 12, color: '#7f8c8d', marginTop: 2 },
 
-  content: { fontSize: 15, lineHeight: 22, color: '#34495e' },
+  lastCard: {
+    marginBottom: 60,
+  },
 
-  media:   { width: '100%', height: 200, borderRadius: 12, marginTop: 12 },
+  header: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 16,
+  },
+
+  avatar: { 
+    width: 44, 
+    height: 44, 
+    borderRadius: 22, 
+    marginRight: 12, 
+    backgroundColor: '#e1e8ed',
+    borderWidth: 2,
+    borderColor: '#f0f2f5',
+  },
+
+  userInfo: {
+    flex: 1,
+  },
+
+  name: { 
+    fontSize: 16, 
+    fontWeight: '600', 
+    color: '#1a202c',
+    marginBottom: 2,
+  },
+
+  time: { 
+    fontSize: 13, 
+    color: '#718096',
+  },
+
+  content: { 
+    fontSize: 15, 
+    lineHeight: 22, 
+    color: '#2d3748',
+    marginBottom: 16,
+  },
+
+  mediaContainer: {
+    width: '100%',
+    borderRadius: 12,
+    overflow: 'hidden',
+    backgroundColor: '#f7fafc',
+  },
+
+  media: {
+    width: '100%',
+    height: 240,
+    backgroundColor: '#e2e8f0',
+  },
 });
