@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 24,
     paddingHorizontal: 16,
+    marginBottom: 10
   },
   
   center: { 
